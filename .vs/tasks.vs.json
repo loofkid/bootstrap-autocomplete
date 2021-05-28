@@ -1,0 +1,15 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskLabel": "task-gulpfile",
+      "appliesTo": "gulpfile.js",
+      "type": "launch"
+    },
+    {
+      "taskLabel": "task-gulpfile",
+      "appliesTo": "gulpfile.js",
+      "type": "launch"
+    }
+  ]
+}

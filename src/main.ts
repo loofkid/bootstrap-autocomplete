@@ -19,7 +19,6 @@
  * limitations under the License.
  * ============================================================ */
 import { AjaxResolver, BaseResolver } from './resolvers';
-import { DropdownV3 } from './dropdownV3';
 import { DropdownV4 } from './dropdownV4';
 
 
@@ -48,7 +47,7 @@ export class AutoComplete {
 
   private _el: Element;
   private _$el: JQuery<HTMLElement>;
-  private _dd: DropdownV3 | DropdownV4;
+  private _dd: DropdownV4;
   private _searchText: string;
   private _selectedItem: any = null;
   private _defaultValue: any = null;
@@ -156,13 +155,18 @@ export class AutoComplete {
     // create search input element
     const searchField: JQuery = $('<input>');
     // copy all attributes
-    searchField.attr('type', 'search');
-    searchField.attr('name', this._$el.attr('name') + '_text');
-    searchField.attr('id', this._$el.attr('id'));
-    searchField.attr('disabled', this._$el.attr('disabled'));
-    searchField.attr('placeholder', this._$el.attr('placeholder'));
-    searchField.attr('autocomplete', 'off');
-    searchField.addClass(this._$el.attr('class'));
+    // searchField.attr('type', 'search');
+    // searchField.attr('name', this._$el.attr('name') + '_text');
+    // searchField.attr('id', this._$el.attr('id'));
+    // searchField.attr('disabled', this._$el.attr('disabled'));
+    // searchField.attr('placeholder', this._$el.attr('placeholder'));
+    // searchField.attr('autocomplete', 'off');
+    // searchField.addClass(this._$el.attr('class'));
+    for (let i = 0; i < this._$el[0].attributes.length; i++) {
+        const attr = this._$el[0].attributes[i];
+        searchField.attr(attr.name, attr.value);
+    }
+
     if (this._defaultText) {
       searchField.val(this._defaultText);
     }
@@ -193,10 +197,6 @@ export class AutoComplete {
     if (this.getBootstrapVersion()[0] === 4) {
       // v4
       this._dd = new DropdownV4(this._$el, this._settings.formatResult,
-        this._settings.autoSelect, this._settings.noResultsText
-      );
-    } else {
-      this._dd = new DropdownV3(this._$el, this._settings.formatResult,
         this._settings.autoSelect, this._settings.noResultsText
       );
     }

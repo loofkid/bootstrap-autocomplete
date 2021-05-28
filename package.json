@@ -17,6 +17,7 @@
     "dist/*",
     "src/*"
   ],
+  "types": "./types/*.d.ts",
   "scripts": {
     "test": "gulp test"
   },

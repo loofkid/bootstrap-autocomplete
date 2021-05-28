@@ -56,7 +56,7 @@ function copyTestData() {
 }
 
 function compileJs() {
-  return gulp.src('src/*.ts')
+  return gulp.src('./src/main.ts')
     .pipe(plumber({
       errorHandler: errorHandler
     }))
@@ -105,12 +105,12 @@ async function devServer() {
 
 function minify() {
   return gulp.src('dist/latest/bootstrap-autocomplete.js')
-    .pipe(rename({
-      extname: '.min.js'
-    }))
     .pipe(size({ title: 'PRE-MINIFY' }))
     .pipe(uglify({ mangle: true }))
     .pipe(size({ title: 'POST-MINIFY' }))
+    .pipe(rename({
+      extname: '.min.js'
+    }))
     .pipe(gulp.dest('dist/latest'));
 }
 
